@@ -1,0 +1,8 @@
+DocumentRoot /home/esofthol/public_html/esync/application/public
+<Directory "/home/esofthol/public_html/esync/application/public">
+</Directory>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
