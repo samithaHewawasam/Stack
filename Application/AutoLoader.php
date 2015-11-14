@@ -1,8 +1,10 @@
 <?php
 /**
- * @link PHP Stack Framework
+ * @package PHP Stack Framework
  * @author Samitha Hewawasam(underscore) <samithahewawasam@gmail.com>
+ * @copyright	Copyright (c) 2015 - 2015, Doers, Inc
  * @since 2015-11-13
+ * @category	AutoLoader
  * @version 1.0
  */
 
