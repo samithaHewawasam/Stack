@@ -9,9 +9,9 @@ require_once __DIR__.'/../Application/Bootstrap.php';
 
 $model = new Stack\Application\Models\Model();
 
-$controller = new Controller($model);
+$controller = new Stack\Application\Controllers\Controller($model);
 
-$view = new View($model);
+$view = new  Stack\Application\Views\View($model);
 
 echo $view->output();
 

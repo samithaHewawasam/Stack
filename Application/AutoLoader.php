@@ -6,35 +6,57 @@
  * @version 1.0
  */
 
- namespace Stack\Application;
+namespace Stack\Application;
 
- define('ROOT', __DIR__);
+/**
+ * @var ROOT = 'var/www';
+ */
 
- class AutoLoader
- {
+define('ROOT', __DIR__);
 
-   /**
-    * Set qualified name Stack\Application
-    */
+class AutoLoader
+{
 
-   public static function register(){
-     spl_autoload_register('Stack\Application\AutoLoader::useNamespace');
-   }
+    private static $pos = false;
+    private static $namespace_path = NULL;
+    private static $namespace_name = NULL;
+    private static $file = NULL;
 
-   public function unregister(){
-     spl_autoload_unregister('Stack\Application\AutoLoader::useNamespace');
-   }
+    /**
+     * Set qualified name Stack\Application
+     */
 
-   private static function useNamespace($namespace){
-     echo $namespace; // Stack\Application\Models\Model
-     $filename = $namespace. '.php';
-     $file = ROOT.'/Stack/Application/Models' . $filename;
-     if (!file_exists($file))
-     {
-         return false;
-     }
-     include $file;
+    public static function register()
+    {
+        spl_autoload_register('Stack\Application\AutoLoader::useNamespace');
+    }
 
-     }
+    public function unregister()
+    {
+        spl_autoload_unregister('Stack\Application\AutoLoader::useNamespace');
+    }
 
-   }
+    private static function useNamespace($namespace)
+    {
+
+        /**
+         * @var $namespace namespace name
+         * @var $pos — Find the position of the last occurrence of a class in a fully qulified $namespace
+         */
+
+        if (false !== $pos = strrpos($namespace, '\\')) {
+            $pos            = strrpos($namespace, '\\');
+            $namespace_path = str_replace('\\', DIRECTORY_SEPARATOR, substr($namespace, 0, $pos)) . DIRECTORY_SEPARATOR;
+            $namespace_name = substr($namespace, $pos + 1);
+            $file           = ROOT . DIRECTORY_SEPARATOR . '../..' . DIRECTORY_SEPARATOR . $namespace_path . $namespace_name . '.php';
+
+            if (!file_exists($file)) {
+                return false;
+            }
+            include $file;
+
+        }
+
+    }
+
+}
