@@ -26,8 +26,15 @@
    }
 
    private static function useNamespace($namespace){
+     echo $namespace; // Stack\Application\Models\Model
+     $filename = $namespace. '.php';
+     $file = ROOT.'/Stack/Application/Models' . $filename;
+     if (!file_exists($file))
+     {
+         return false;
+     }
+     include $file;
 
+     }
 
    }
-
- }

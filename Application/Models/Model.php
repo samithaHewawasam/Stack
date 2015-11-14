@@ -1,5 +1,7 @@
 <?php
 
+namespace Stack\Application\Models;
+
 class Model {
 
     public $text;

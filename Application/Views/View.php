@@ -1,5 +1,7 @@
 <?php
 
+namespace Stack\Application\Views;
+
 class View {
 
     private $model;

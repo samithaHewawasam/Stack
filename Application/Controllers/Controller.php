@@ -1,5 +1,7 @@
 <?php
 
+namespace Stack\Application\Controllers;
+
 class Controller {
 
     private $model;
